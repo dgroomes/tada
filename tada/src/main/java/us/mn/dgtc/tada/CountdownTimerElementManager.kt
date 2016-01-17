@@ -29,12 +29,14 @@ class CountDownTimerElementManager(val rootView: ViewGroup, val activity: Activi
         val timerTextView = TextView(activity)
         assignLocation(timerTextView)
         timerTextView.setTextColor(colorProvider.getNextColor())
-        //todo randomize font size
+        timerTextView.textSize = randomIntBetween(10, 55).toFloat()
         timerTextView.setBackgroundColor(0)
-
         return CountDownTimerElement(timerTextView, this)
     }
 
+    /**
+     * not super great random location assigner
+     */
     private fun assignLocation(textView: TextView) {
         val point: Point = Point()
         activity.windowManager.defaultDisplay.getSize(point)

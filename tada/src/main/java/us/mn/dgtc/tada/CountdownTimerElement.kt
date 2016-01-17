@@ -7,31 +7,36 @@ import android.widget.TextView
 /**
  * Created by davidg on 1/10/16.
  *
- * Implementation notes: This probably shouldn't extend CountDownTimer because it isn't really an "is a" relationship.
- * That detracts from the abstraction. EDIT: definitely follow up on this. We're exposing and using the #start method of CountDownTimer,
- * CountdownTimerElement should really just have its own #start method. What if there's a new requirement?
+ * Visual element that shows a timer that counts down to 0:00, and then fades away.
  */
 
 class CountDownTimerElement(val textView: TextView,
-                            private val countDownTimerElementManager: CountDownTimerElementManager) : CountDownTimer(10999, 10) {
+                            private val countDownTimerElementManager: CountDownTimerElementManager) {
 
-    override fun onTick(millisUntilFinished: Long) {
-        val toPrint = toSecondsAndMilliseconds(millisUntilFinished)
-        textView.text = toPrint
+    fun start() {
+        CountDownTimerSerialExecutor()
+                .schedule(countDown)
+                .schedule(zeroOutDisplay)
+                .schedule(fadeOut)
+                .schedule(sendFinish)
+                .run()
     }
 
-    private fun toSecondsAndMilliseconds(millisUntilFinished: Long): String {
+    private val countDown = CountDownTimerDefinition(10999, 10, {
+        val millisUntilFinished = it
         val secondsRemaining = millisUntilFinished / 1000
         val secondsAsMillisRemaining = secondsRemaining * 1000
-        val displayString = "$secondsRemaining:${millisUntilFinished - secondsAsMillisRemaining}"
-        return displayString
-    }
+        val timeRemaining_millisPortion = millisUntilFinished - secondsAsMillisRemaining
+        val timeRemaining_millisPortion_truncated = timeRemaining_millisPortion / 10
+        val displayString = "$secondsRemaining:$timeRemaining_millisPortion_truncated"
+        textView.text = displayString
+    })
 
-    override fun onFinish() {
-        countDownTimerElementManager.handleOnFinish(this)
-    }
+    private val zeroOutDisplay = { textView.text = "0:00" }
 
-    fun addToViewGroup(viewGroup : ViewGroup) {
-        viewGroup.addView(textView)
-    }
+    private val fadeOut = CountDownTimerDefinition(3000, 10, { textView.alpha = it.toFloat() / 3000.toFloat() })
+
+    private val sendFinish = { countDownTimerElementManager.handleOnFinish(this) }
+
+    fun addToViewGroup(viewGroup: ViewGroup) = viewGroup.addView(textView)
 }

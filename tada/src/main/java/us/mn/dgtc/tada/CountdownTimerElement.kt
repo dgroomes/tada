@@ -11,10 +11,10 @@ import android.widget.TextView
  */
 
 class CountDownTimerElement(val textView: TextView,
-                            private val countDownTimerElementManager: CountDownTimerElementManager) {
+                                   private val countDownTimerElementManager: CountDownTimerElementManager) {
 
     fun start() {
-        CountDownTimerSerialExecutor()
+        CountDownTimerSerialExecutor(CountDownTimerMakerReal())
                 .schedule(countDown)
                 .schedule(zeroOutDisplay)
                 .schedule(fadeOut)

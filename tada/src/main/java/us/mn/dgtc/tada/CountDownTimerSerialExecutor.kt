@@ -8,7 +8,7 @@ import java.util.*
  *
  * Schedule CountDownTimer instances and/or Runnable instances to execute in serial.
  */
-class CountDownTimerSerialExecutor() {
+class CountDownTimerSerialExecutor(val countDownTimerMaker : CountDownTimerMakerInterface) {
 
     private var executed = false
 
@@ -36,10 +36,10 @@ class CountDownTimerSerialExecutor() {
      */
     private fun buildRunnableQueueRecursive(defs : List<Any>) : Runnable {
         return when (defs.size) {
-            0 -> throw IllegalArgumentException("must have at least directive")
+            0 -> throw IllegalArgumentException("must have at least one directive")
             1 -> createTerminalOperation(defs[0])
             else -> {
-                createRunnable(defs[0], buildRunnableQueueRecursive(defs.slice(1..defs.size)))
+                createRunnable(defs[0], buildRunnableQueueRecursive(defs.slice(1..defs.size - 1)))
             }
         }
     }
@@ -47,36 +47,28 @@ class CountDownTimerSerialExecutor() {
     private fun createRunnable(actionOrDef: Any, nextRunnable: Runnable) : Runnable {
         if (actionOrDef is CountDownTimerDefinition) {
             return Runnable {
-                object : CountDownTimer(actionOrDef.duration, actionOrDef.interval) {
-                    override fun onFinish() {
-                        nextRunnable.run()
-                    }
-
-                    override fun onTick(millisUntilFinished: Long) {
-                        actionOrDef.onTick(millisUntilFinished)
-                    }
-                }.start()
+                countDownTimerMaker.makeCountDownTimerChained(actionOrDef, nextRunnable).start()
             }
-        } else if (actionOrDef is Runnable) {
+        } else {
             return Runnable {
-                actionOrDef.run()
+                val castInvokable = actionOrDef as () -> Unit
+                castInvokable.invoke()
                 nextRunnable.run()
             }
-        } else throw IllegalStateException("the actionOrDef must be a CountDownTimerDefinition or a Runnable")
+        }
     }
 
     private fun createTerminalOperation(actionOrDef: Any) : Runnable {
         if (actionOrDef is CountDownTimerDefinition) {
             return Runnable {
-                object : CountDownTimer(actionOrDef.duration, actionOrDef.interval) {
-                    override fun onFinish() {}
-
-                    override fun onTick(millisUntilFinished: Long) {
-                        actionOrDef.onTick(millisUntilFinished)
-                    }
-                }.start()
+                countDownTimerMaker.makeCountDownTimer(actionOrDef).start()
             }
-        } else if (actionOrDef is Runnable) return actionOrDef
-        else throw IllegalStateException("the actionOrDef must be a CountDownTimerDefinition or a Runnable")
+        } else {
+            val castInvokable = actionOrDef as () -> Unit
+            val runnable = Runnable {
+                castInvokable.invoke()
+            }
+            return runnable
+        }
     }
 }

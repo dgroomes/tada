@@ -11,7 +11,8 @@ import android.widget.TextView
  * Manages CountdownTimerElement instance. Or rather, is a strategy pattern holding an algorithm to execute "on finish"
  * of the lifespan of a CountdownTimerElement
  */
-class CountDownTimerElementManager(val rootView: ViewGroup, val activity: Activity) {
+class CountDownTimerElementManager(val rootView: ViewGroup,
+                                   val activity: Activity) {
 
     val colorProvider: ColorProvider = ColorProvider() // todo dependency injection
 

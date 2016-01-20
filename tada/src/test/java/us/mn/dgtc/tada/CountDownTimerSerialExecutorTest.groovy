@@ -28,13 +28,6 @@ class CountDownTimerSerialExecutorTest extends Specification {
     //</editor-fold>
 
     //<editor-fold desc="Tests">
-    def "#run: with no actions scheduled"() {
-        when:
-        executor.run()
-        then:
-        thrown IllegalArgumentException
-    }
-
     def "#run: with one scheduled action"() {
         executor.schedule(spiedObjectToString)
         when:
@@ -70,7 +63,7 @@ class CountDownTimerSerialExecutorTest extends Specification {
         1 * sensor.invoke()
     }
 
-    def '#run: with two CountDownTimer action'() {
+    def '#run: with two CountDownTimer actions'() {
         executor.schedule(new CountDownTimerDefinition(10, 1, spiedObjectToString))
         executor.schedule(new CountDownTimerDefinition(10, 1, spiedObjectToString))
         when:

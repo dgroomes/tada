@@ -8,11 +8,11 @@ import java.util.*
  *
  * Schedule CountDownTimer instances and/or Runnable instances to execute in serial.
  */
-class CountDownTimerSerialExecutor(val countDownTimerMaker : CountDownTimerMakerInterface) {
+class CountDownTimerSerialExecutor(val countDownTimerMaker: CountDownTimerMakerInterface) {
 
     private var executed = false
 
-    private val directives : MutableList<Any> = ArrayList()
+    private val directives: MutableList<Any> = ArrayList()
 
     fun run() {
         if (executed) throw IllegalStateException("#run has already been called on this executor")
@@ -22,12 +22,12 @@ class CountDownTimerSerialExecutor(val countDownTimerMaker : CountDownTimerMaker
         }
     }
 
-    fun schedule(def : CountDownTimerDefinition) : CountDownTimerSerialExecutor {
+    fun schedule(def: CountDownTimerDefinition): CountDownTimerSerialExecutor {
         directives.add(def)
         return this
     }
 
-    fun schedule(nonTimedAction: () -> Unit ) : CountDownTimerSerialExecutor {
+    fun schedule(nonTimedAction: () -> Unit): CountDownTimerSerialExecutor {
         directives.add(nonTimedAction)
         return this
     }

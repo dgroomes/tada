@@ -1,7 +1,5 @@
 package us.mn.dgtc.tada
 
-import android.os.CountDownTimer
-
 class CountDownTimerMakerMock : CountDownTimerMakerInterface {
 
     override fun makeCountDownTimer(def: CountDownTimerDefinition): CountDownTimerInterface = object : CountDownTimerInterface {

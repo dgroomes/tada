@@ -15,7 +15,7 @@ class CountDownTimerArtActivity : Activity() {
         setContentView(R.layout.activity_main)
         val rootView: ViewGroup = getRootView(this) as ViewGroup
         val countDownTimerElementManager = CountDownTimerElementManager(rootView, this)
-        rootView.onClick { view ->
+        rootView.onClick {
             countDownTimerElementManager.addACountDownTimerElement()
         }
     }

@@ -4,13 +4,14 @@ import android.os.CountDownTimer
 import us.mn.dgtc.tada.execution.CallbackableRunnable
 
 /**
- * Created by David Groomes on 1/20/2016.
+ * Note: this is definitely a little needlessly complex
  */
-abstract class CallbackableCountDownTimer(duration : Long, interval : Long) : CountDownTimer(duration, interval), CallbackableRunnable {
+abstract class CallbackableCountDownTimer(duration: Long, interval: Long) : CountDownTimer(duration, interval), CallbackableRunnable {
 
-    private var optionalCallback : (() -> Unit)? = null;
+    private var optionalCallback: (() -> Unit)? = null;
 
-    override fun onTick(millisUntilFinished: Long) { }
+    override fun onTick(millisUntilFinished: Long) {
+    }
 
     override fun run() {
         this.start()
@@ -25,3 +26,10 @@ abstract class CallbackableCountDownTimer(duration : Long, interval : Long) : Co
         this.start()
     }
 }
+
+fun callbackackableCountDownTimerFrom(duration: Long, interval: Long, onTick: (millisUntilFinished: Long) -> Unit) =
+        object : CallbackableCountDownTimer(duration, interval) {
+            override fun onTick(millisUntilFinished: Long) {
+                onTick(millisUntilFinished)
+            }
+        }

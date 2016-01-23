@@ -10,8 +10,7 @@ import us.mn.dgtc.tada.util.randomIntBetween
 /**
  * Created by davidg on 1/10/16.
  *
- * Manages CountdownTimerElement instance. Or rather, is a strategy pattern holding an algorithm to execute "on finish"
- * of the lifespan of a CountdownTimerElement
+ * Manages CountdownTimerElement instance.
  */
 class CountDownTimerElementManager(val rootView: ViewGroup,
                                    val activity: Activity) {

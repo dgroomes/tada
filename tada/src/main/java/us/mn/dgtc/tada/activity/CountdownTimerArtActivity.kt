@@ -1,12 +1,12 @@
-package us.mn.dgtc.tada;
+package us.mn.dgtc.tada.activity;
 
 import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.view.ViewGroup
 import org.jetbrains.anko.onClick
-import org.jetbrains.anko.onTouch
+import us.mn.dgtc.tada.countdowntimer.CountDownTimerElementManager
+import us.mn.dgtc.tada.util.getRootView
 
 class CountDownTimerArtActivity : Activity() {
 

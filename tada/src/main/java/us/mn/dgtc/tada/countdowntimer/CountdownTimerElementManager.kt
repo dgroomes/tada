@@ -1,9 +1,11 @@
-package us.mn.dgtc.tada
+package us.mn.dgtc.tada.countdowntimer
 
 import android.app.Activity
 import android.graphics.Point
 import android.view.ViewGroup
 import android.widget.TextView
+import us.mn.dgtc.tada.color.ColorProvider
+import us.mn.dgtc.tada.util.randomIntBetween
 
 /**
  * Created by davidg on 1/10/16.

@@ -1,5 +1,5 @@
 
-package us.mn.dgtc.tada
+package us.mn.dgtc.tada.util
 
 import java.util.*
 

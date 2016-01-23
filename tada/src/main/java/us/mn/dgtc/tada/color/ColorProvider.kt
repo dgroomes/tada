@@ -1,4 +1,4 @@
-package us.mn.dgtc.tada
+package us.mn.dgtc.tada.color
 
 import java.util.*
 

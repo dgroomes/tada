@@ -5,6 +5,7 @@ import android.graphics.Point
 import android.view.ViewGroup
 import android.widget.TextView
 import us.mn.dgtc.tada.color.ColorProvider
+import us.mn.dgtc.tada.execution.Oscillator
 import us.mn.dgtc.tada.util.randomIntBetween
 
 /**
@@ -12,18 +13,29 @@ import us.mn.dgtc.tada.util.randomIntBetween
  *
  * Manages CountdownTimerElement instance.
  */
-class CountDownTimerElementManager(val rootView: ViewGroup,
+class CountDownTimerElementManager(val rootView : ViewGroup,
                                    val activity: Activity) {
+
+
+    val colorChangingOscillator : Oscillator
+
+    init {
+        colorChangingOscillator = Oscillator({
+            colorProvider.switchColorPallete()
+        })
+    }
 
     val colorProvider: ColorProvider = ColorProvider() // todo dependency injection
 
     fun handleOnFinish(element: CountDownTimerElement) {
         rootView.removeView(element.textView)
+        colorChangingOscillator.down()
     }
 
     fun addACountDownTimerElement() {
         val countDownTimerElement = createACountDownTimerElement()
         countDownTimerElement.addToViewGroup(rootView)
+        colorChangingOscillator.up()
         countDownTimerElement.start()
     }
 

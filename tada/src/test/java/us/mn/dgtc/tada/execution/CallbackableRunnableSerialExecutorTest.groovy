@@ -5,8 +5,6 @@ import kotlin.jvm.functions.Function0
 import org.jetbrains.annotations.NotNull
 import spock.lang.Specification
 import us.mn.dgtc.tada.Sensor
-import us.mn.dgtc.tada.execution.CallbackableRunnable
-import us.mn.dgtc.tada.execution.CallbackableRunnableSerialExecutor
 
 /**
  * Created by David Groomes on 1/17/2016.

@@ -1,9 +1,10 @@
-package us.mn.dgtc.tada
+package us.mn.dgtc.tada.execution
 
 import kotlin.Unit
 import kotlin.jvm.functions.Function0
 import org.jetbrains.annotations.NotNull
 import spock.lang.Specification
+import us.mn.dgtc.tada.Sensor
 import us.mn.dgtc.tada.execution.CallbackableRunnable
 import us.mn.dgtc.tada.execution.CallbackableRunnableSerialExecutor
 

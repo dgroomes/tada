@@ -2,11 +2,6 @@ package us.mn.dgtc.tada.color
 
 import us.mn.dgtc.tada.util.randomIntBetween
 
-/**
- * Created by davidg on 1/10/16.
- *
- * todo: dependency injection
- */
 
 /**
  * Colors courtesy colourlovers.com
@@ -17,16 +12,20 @@ val colorPalettes = setOf(
         ColorPalette("gianGoldfish", arrayOf(0xFF69D2E7.toInt(), 0xFFA7DBD8.toInt(), 0xFFE0E4CC.toInt(), 0xFFF38630.toInt(), 0xFFFA6900.toInt()))
 ).toMapBy { it.name }
 
-fun ColorPalette.getRandomColor(): Int = this.colors.get(java.util.Random().nextInt(this.colors.size))
-
 fun <T> Set<T>.getRandom(): T = when (size) {
     0 -> throw IllegalStateException("set is empty, cannot get a random element")
     1 -> first()
-    else -> elementAt(randomIntBetween(0, size - 1))
+    else -> elementAt(randomIntBetween(0, size))
 }
 
+fun ColorPalette.getRandomColor(): Int = this.colors.get(java.util.Random().nextInt(this.colors.size))
+
 /**
- * Not thread safe (I'll accept the risk...)
+ * Created by davidg on 1/10/16.
+ *
+ * Not thread safe (I'll accept the downside effects...I might get a wrong color!)
+ *
+ * todo: dependency injection
  */
 class ColorProvider {
 

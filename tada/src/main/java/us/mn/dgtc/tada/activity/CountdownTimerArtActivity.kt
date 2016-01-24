@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.ViewGroup
 import org.jetbrains.anko.onClick
-import us.mn.dgtc.tada.MyApplication
+import us.mn.dgtc.tada.TadaApplication
 import us.mn.dgtc.tada.R
 import us.mn.dgtc.tada.countdowntimer.CountDownTimerElementManager
 import us.mn.dgtc.tada.util.getRootView
@@ -20,7 +20,7 @@ class CountDownTimerArtActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // DI
-        MyApplication.graph.inject(this)
+        TadaApplication.graph.inject(this)
         assert(theMessage == "the message is this.")
 
         super.onCreate(savedInstanceState)

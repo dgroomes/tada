@@ -8,8 +8,8 @@ import javax.inject.Singleton
  * Created by David Groomes on 1/24/2016.
  */
 @Singleton
-@Component(modules = arrayOf(SampleModule::class))
-interface SampleComponent {
+@Component(modules = arrayOf(TadaModule::class))
+interface TadaComponent {
 
     fun inject(countDownTimerArtActivity: CountDownTimerArtActivity)
 

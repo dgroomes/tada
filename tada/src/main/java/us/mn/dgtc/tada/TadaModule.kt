@@ -9,7 +9,7 @@ import javax.inject.Singleton
  * Created by David Groomes on 1/24/2016.
  */
 @Module
-class SampleModule {
+class TadaModule {
 
     @Provides
     @Singleton

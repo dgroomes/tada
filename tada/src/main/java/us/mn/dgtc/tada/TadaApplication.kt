@@ -5,14 +5,14 @@ import android.app.Application
 /**
  * Created by David Groomes on 1/24/2016.
  */
-class MyApplication : Application() {
+class TadaApplication : Application() {
 
     companion object {
-        @JvmStatic lateinit public var graph: SampleComponent
+        @JvmStatic lateinit public var graph: TadaComponent
     }
 
     override fun onCreate() {
         super.onCreate()
-        graph = DaggerSampleComponent.builder().sampleModule(SampleModule()).build()
+        graph = DaggerTadaComponent.create()
     }
 }

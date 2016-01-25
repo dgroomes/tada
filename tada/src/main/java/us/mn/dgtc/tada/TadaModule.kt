@@ -2,6 +2,8 @@ package us.mn.dgtc.tada
 
 import dagger.Module
 import dagger.Provides
+import us.mn.dgtc.tada.color.ColorProvider
+import us.mn.dgtc.tada.color.ColorProviderHardCoded
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -13,9 +15,6 @@ class TadaModule {
 
     @Provides
     @Singleton
-    @Named("theMessage")
-    fun provideTheMessage() : String {
-        return "the message is this."
-    }
+    fun provideColorProvider(colorProviderHardCoded: ColorProviderHardCoded) : ColorProvider = colorProviderHardCoded
 
 }

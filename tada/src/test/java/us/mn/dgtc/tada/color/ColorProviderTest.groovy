@@ -7,7 +7,7 @@ import spock.lang.Specification
  */
 class ColorProviderTest extends Specification {
 
-    ColorProvider provider = new ColorProvider()
+    ColorProviderHardCoded provider = new ColorProviderHardCoded()
 
     void setup() {
 

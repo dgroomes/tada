@@ -4,9 +4,12 @@ import android.app.Activity
 import android.graphics.Point
 import android.view.ViewGroup
 import android.widget.TextView
+import us.mn.dgtc.tada.TadaApplication
 import us.mn.dgtc.tada.color.ColorProvider
+import us.mn.dgtc.tada.color.ColorProviderHardCoded
 import us.mn.dgtc.tada.execution.Oscillator
 import us.mn.dgtc.tada.util.randomIntBetween
+import javax.inject.Inject
 
 /**
  * Created by davidg on 1/10/16.
@@ -14,18 +17,19 @@ import us.mn.dgtc.tada.util.randomIntBetween
  * Manages CountdownTimerElement instance.
  */
 class CountDownTimerElementManager(val rootView : ViewGroup,
-                                   val activity: Activity) {
+                                   val activity: Activity,
+                                   val colorProvider: ColorProvider) {
 
 
     val colorChangingOscillator : Oscillator
 
     init {
+        TadaApplication.graph.inject(this)
         colorChangingOscillator = Oscillator({
             colorProvider.switchColorPallete()
         })
     }
 
-    val colorProvider: ColorProvider = ColorProvider() // todo dependency injection
 
     fun handleOnFinish(element: CountDownTimerElement) {
         rootView.removeView(element.textView)

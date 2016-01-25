@@ -1,0 +1,7 @@
+Todo list:
+- make a main screen, where options can exist, and a "go" button to get to the Art screen
+
+backburner:
+- I would really like to use AutoFactory (https://github.com/google/auto/tree/master/factory) but code generation does
+not work well with non-Java, rather Kotlin. There is a mess of build-tool configuration required for figuring this out,
+and probably a major pull request for the `kapt` tool at https://github.com/JetBrains/kotlin

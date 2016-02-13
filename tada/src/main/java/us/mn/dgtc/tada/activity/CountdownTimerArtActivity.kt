@@ -16,7 +16,7 @@ class CountDownTimerArtActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_count_down_timer_art)
         val rootView: ViewGroup = getRootView(this) as ViewGroup
         val countDownTimerElementManager =
                 TadaApplication

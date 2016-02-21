@@ -37,5 +37,4 @@ class HomeActivity : Activity() {
         val intent = Intent(this, CountDownTimerArtActivity::class.java)
         startActivity(intent)
     }
-
 }

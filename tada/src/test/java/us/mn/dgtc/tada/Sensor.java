@@ -1,12 +1,11 @@
-package us.mn.dgtc.tada
+package us.mn.dgtc.tada;
 
 /**
  * Created by David Groomes on 1/18/2016.
  *
  * For testing
  */
-interface Sensor {
+public interface Sensor {
 
-    def invoke()
-
+    void invoke();
 }

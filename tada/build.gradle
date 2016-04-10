@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version='1.0.0'
+    ext.kotlin_version='1.0.1-2'
     repositories {
         jcenter()
     }
@@ -49,9 +49,10 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.0.2'
     provided 'org.glassfish:javax.annotation:10.0-b28'
 
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    testCompile 'org.codehaus.groovy:groovy-all:2.4.5'
-    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    testCompile 'com.android.support:appcompat-v7:23.3.0'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'com.squareup.assertj:assertj-android:1.1.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile 'org.jetbrains.anko:anko-sdk15:0.8.2'
     testCompile 'junit:junit:4.12'

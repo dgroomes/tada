@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import org.junit.experimental.categories.Category;
 import us.mn.dgtc.tada.Sensor;
+import us.mn.dgtc.tada.junit.UnitTest;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -15,6 +17,7 @@ import static org.mockito.Mockito.verify;
 /**
  * Created by David Groomes on 1/17/2016.
  */
+@Category(UnitTest.class)
 public class CallbackableRunnableSerialExecutorTest {
 
     class TestCR implements CallbackableRunnable {

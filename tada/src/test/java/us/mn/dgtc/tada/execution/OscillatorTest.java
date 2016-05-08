@@ -1,20 +1,20 @@
 package us.mn.dgtc.tada.execution;
 
-import org.junit.Test;
-
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import us.mn.dgtc.tada.Sensor;
+import us.mn.dgtc.tada.junit.UnitTest;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by David Groomes on 1/23/2016.
  *
  * Anthropological footnote: TDD in the raw
  */
+@Category(UnitTest.class)
 public class OscillatorTest {
 
     Sensor sensor = mock(Sensor.class);

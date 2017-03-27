@@ -1,13 +1,16 @@
 package us.mn.dgtc.tada.execution;
 
-import kotlin.Unit;
-import kotlin.jvm.functions.Function0;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function0;
 import us.mn.dgtc.tada.Sensor;
 import us.mn.dgtc.tada.junit.UnitTest;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created by David Groomes on 1/23/2016.

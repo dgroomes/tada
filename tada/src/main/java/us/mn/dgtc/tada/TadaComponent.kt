@@ -1,7 +1,6 @@
 package us.mn.dgtc.tada
 
 import dagger.Component
-import us.mn.dgtc.tada.activity.CountDownTimerArtActivity
 import us.mn.dgtc.tada.countdowntimer.CountDownTimerElementManager
 import us.mn.dgtc.tada.countdowntimer.CountDownTimerElementManagerFactory
 import javax.inject.Singleton

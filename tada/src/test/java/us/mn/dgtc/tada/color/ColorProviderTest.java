@@ -2,10 +2,11 @@ package us.mn.dgtc.tada.color;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import us.mn.dgtc.tada.junit.UnitTest;
 
 import java.util.Arrays;
 import java.util.List;
+
+import us.mn.dgtc.tada.junit.UnitTest;
 
 import static junit.framework.Assert.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;

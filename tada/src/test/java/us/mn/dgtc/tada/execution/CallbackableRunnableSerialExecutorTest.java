@@ -3,10 +3,10 @@ package us.mn.dgtc.tada.execution;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
-import org.junit.experimental.categories.Category;
 import us.mn.dgtc.tada.Sensor;
 import us.mn.dgtc.tada.junit.UnitTest;
 

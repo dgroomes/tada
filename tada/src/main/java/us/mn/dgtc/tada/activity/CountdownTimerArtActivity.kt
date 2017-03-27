@@ -1,29 +1,30 @@
 package us.mn.dgtc.tada.activity;
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.ViewGroup
 import org.jetbrains.anko.onClick
-import us.mn.dgtc.tada.TadaApplication
 import us.mn.dgtc.tada.R
-import us.mn.dgtc.tada.countdowntimer.CountDownTimerElementManager
-import us.mn.dgtc.tada.util.getRootView
-import javax.inject.Inject
-import javax.inject.Named
+import us.mn.dgtc.tada.TadaApplication
 
+/**
+ *
+ */
 class CountDownTimerArtActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_count_down_timer_art)
-        val rootView: ViewGroup = getRootView(this) as ViewGroup
+        @SuppressLint("InflateParams")
+        val view = layoutInflater.inflate(R.layout.activity_count_down_timer_art, null) as ViewGroup
+        setContentView(view)
         val countDownTimerElementManager =
                 TadaApplication
                         .graph
                         .countDownTimerElementManagerFactory()
-                        .create(this, rootView)
-        rootView.onClick {
+                        .create(this)
+        view.onClick {
             countDownTimerElementManager.addACountDownTimerElement()
         }
     }

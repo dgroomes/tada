@@ -2,7 +2,6 @@ package us.mn.dgtc.tada.countdowntimer
 
 import android.view.ViewGroup
 import android.widget.TextView
-import us.mn.dgtc.tada.execution.CallbackableRunnable
 import us.mn.dgtc.tada.execution.CallbackableRunnableSerialExecutor
 import us.mn.dgtc.tada.execution.callbackableRunnableFrom
 

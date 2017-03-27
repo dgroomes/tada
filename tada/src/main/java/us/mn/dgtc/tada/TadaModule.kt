@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import us.mn.dgtc.tada.color.ColorProvider
 import us.mn.dgtc.tada.color.ColorProviderHardCoded
-import javax.inject.Named
+import us.mn.dgtc.tada.countdowntimer.CountDownTimerElementManagerFactory
 import javax.inject.Singleton
 
 /**
@@ -16,5 +16,9 @@ class TadaModule {
     @Provides
     @Singleton
     fun provideColorProvider(colorProviderHardCoded: ColorProviderHardCoded) : ColorProvider = colorProviderHardCoded
+
+    @Provides
+    @Singleton
+    fun provideFactory(colorProvider : ColorProvider) : CountDownTimerElementManagerFactory = CountDownTimerElementManagerFactory(colorProvider)
 
 }

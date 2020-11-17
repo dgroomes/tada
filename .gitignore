@@ -2,3 +2,4 @@
 build/
 .gradle/
 tada.iml
+local.properties

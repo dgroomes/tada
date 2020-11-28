@@ -3,6 +3,7 @@ package us.mn.dgtc.tada.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import org.jetbrains.anko.onItemSelectedListener
@@ -31,7 +32,8 @@ class HomeActivity : Activity() {
         }
     }
 
-    fun go() {
+    @Suppress("UNUSED_PARAMETER")
+    fun go(view: View) {
         val intent = Intent(this, CountDownTimerArtActivity::class.java)
         startActivity(intent)
     }

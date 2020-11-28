@@ -2,7 +2,7 @@
 
 ⏯ Demo Android application.
 
-### Overview
+## Overview
 
 Let's learn and explore Android with a toy/demo application.
 
@@ -15,9 +15,27 @@ Android Gradle plugin with version 2.3.1. I thought new releases of Android Stud
 versions of the Android Gradle plugin? The backwards-compatibility story is much better than I
 remembered.
 
-### Notes
+## Notes
 
 Use the command line to start the app in the attached device or emulator with:
 ```
 adb shell am start -n "us.mn.dgtc.tada/us.mn.dgtc.tada.activity.HomeActivity"
 ```
+
+## Wish List
+
+General clean ups, TODOs and things I wish to implement for this project:
+
+* Upgrade to latest version of Dagger
+* Upgrade to latest version of the Android Gradle plugin
+* Upgrade to latest version of Gradle
+* Upgrade to latest version of Kotlin. (There's an overarching theme of "upgrade everything"! The
+  Android development toolchain has tight coupling of the versions of these things. So, I have to
+  find the right order to upgrade the versions of these dependencies. I would prefer to
+  incrementally upgrade them and always stay within reach of a working codebase instead of trying
+  the "roll the dice" approach of upgrading everything all at once and then scratching my head for
+  an indeterminate amount of time as I get vague and complex build errrors (e.g 50+ line Gradle
+  stacktraces, or internal errors in AAPT, or Dagger code generation problems especially with regard
+  to Kotlin... I've been down this road before and I don't want to revisit it if I can help it!)
+* Use Gradle's JVM toolchain support to use latest Java (15 right now) for the Gradle process but
+  use Java 8 for the project itself (I doubt this would work)

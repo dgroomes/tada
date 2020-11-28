@@ -28,7 +28,7 @@ General clean ups, TODOs and things I wish to implement for this project:
 
 * Upgrade to latest version of Dagger
 * Upgrade to latest version of the Android Gradle plugin
-* Upgrade to latest version of Gradle
+* DONE Upgrade to latest version of Gradle
 * DONE Upgrade to latest version of Kotlin. (There's an overarching theme of "upgrade everything"! The
   Android development toolchain has tight coupling of the versions of these things. So, I have to
   find the right order to upgrade the versions of these dependencies. I would prefer to

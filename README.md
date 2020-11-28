@@ -56,3 +56,7 @@ General clean ups, TODOs and things I wish to implement for this project:
     site or in GitHub because there 20,000+ GitHub releases for Kotlin. That's not browsable. I finally figured out I
     can look in Maven Central to find the complete list of released version of Kotlin. Thanks Maven Central!
 * [Android official site: "Test" release notes (pre-AndroidX)](https://developer.android.com/jetpack/androidx/releases/archive/test)
+* [Android official blog: Announcing Android Testing Support Library 1.0](https://android-developers.googleblog.com/2017/07/android-testing-support-library-10-is.html)
+* [Google Maven Repository](https://maven.google.com/web/index.html?q=com.android.support.test#com.android.support.test.espresso:espresso-core)
+  * This is useful just like Maven Central is useful. It's source of truch for released versions of software
+    components.

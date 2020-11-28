@@ -39,3 +39,9 @@ General clean ups, TODOs and things I wish to implement for this project:
   to Kotlin... I've been down this road before and I don't want to revisit it if I can help it!)
 * Use Gradle's JVM toolchain support to use latest Java (15 right now) for the Gradle process but
   use Java 8 for the project itself (I doubt this would work)
+
+
+## Reference Material
+
+* [Android official site: Android Build Tools release notes](https://developer.android.com/studio/releases/build-tools)
+* [Android official site: Android Gradle plugin release notes](https://developer.android.com/studio/releases/gradle-plugin)

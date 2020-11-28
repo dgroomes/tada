@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version='1.2.0'
+    ext.kotlin_version='1.2.50'
     repositories {
         mavenLocal()
         jcenter()
@@ -11,6 +11,7 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 25

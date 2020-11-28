@@ -45,3 +45,7 @@ General clean ups, TODOs and things I wish to implement for this project:
 
 * [Android official site: Android Build Tools release notes](https://developer.android.com/studio/releases/build-tools)
 * [Android official site: Android Gradle plugin release notes](https://developer.android.com/studio/releases/gradle-plugin)
+* [Maven central: versions of Kotlin Stdlib](https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib)
+  * I occasionally try to find the release notes of Kotlin and there is no browsable list in either the Kotlin official
+    site or in GitHub because there 20,000+ GitHub releases for Kotlin. That's not browsable. I finally figured out I
+    can look in Maven Central to find the complete list of released version of Kotlin. Thanks Maven Central!

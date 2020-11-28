@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+/*
+ * Options specific to Java code generation:
+ */
+option java_package = "dgroomes";
+option java_outer_classname = "EchoProtos";
+
+/*
+ * This is like a type declaration in the Protobuf language.
+ *
+ * "message", "Message", and "message"? You might be doing a double take! What's going on here?
+ *
+ * 1. The first "message" is a gRPC keyword.
+ * 2. The capitalized "Message" is a name that I chose to represent a type.
+ * 3. The last "message" is the name I chose to define a field of type string.
+ *
+ * This is kind of an awkward example, sorry.
+ */
+message Message {
+  string message = 1;
+}
+
+/*
+ * This is a simple RPC service. It's like an interface declaration in the Protobuf language. In my opinion, it's more
+ * useful to think of this as an interface and not a service.
+ */
+service Echo {
+
+  /*
+   * This is a simple RPC method that echos back some message. Well, it's not really a method but rather the interface
+   * of a method. It's up to the implementing server-side code to actually implement the echo functionality. There's
+   * nothing stopping the server-side implementation from just returning a random string or an empty string instead of
+   * actually echoing back the same string.
+   */
+  rpc Echo(Message) returns (Message) {}
+}

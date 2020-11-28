@@ -3,7 +3,6 @@ package us.mn.dgtc.tada.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import org.jetbrains.anko.onItemSelectedListener
@@ -25,14 +24,14 @@ class HomeActivity : Activity() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, paintOptions)
         spinner.adapter = adapter
         spinner.onItemSelectedListener {
-            onItemSelected { parent, view, position, l ->
+            onItemSelected { parent, _, position, _ ->
                 val item = parent?.getItemAtPosition(position) as String
                 artOptions.paint = item
             }
         }
     }
 
-    fun go(view: View) {
+    fun go() {
         val intent = Intent(this, CountDownTimerArtActivity::class.java)
         startActivity(intent)
     }

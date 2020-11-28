@@ -40,6 +40,11 @@ General clean ups, TODOs and things I wish to implement for this project:
 * Use Gradle's JVM toolchain support to use latest Java (15 right now) for the Gradle process but
   use Java 8 for the project itself (I doubt this would work)
 * Use Gradle's Kotlin DSL
+* Upgrade to latest versions of test dependencies (yikes, there are a lot of independent testing
+  components, each with their own versioning:
+    * `com.android.support.test:runner` (currently version 0.5)
+    * `com.android.support.test.espresso:espresso-core` (currently version 2.2.2)
+    * `com.android.support.test.uiautomator:uiautomator-v18` (currently version 2.1.2, that's close though...)
 
 
 ## Reference Material
@@ -50,3 +55,4 @@ General clean ups, TODOs and things I wish to implement for this project:
   * I occasionally try to find the release notes of Kotlin and there is no browsable list in either the Kotlin official
     site or in GitHub because there 20,000+ GitHub releases for Kotlin. That's not browsable. I finally figured out I
     can look in Maven Central to find the complete list of released version of Kotlin. Thanks Maven Central!
+* [Android official site: "Test" release notes (pre-AndroidX)](https://developer.android.com/jetpack/androidx/releases/archive/test)

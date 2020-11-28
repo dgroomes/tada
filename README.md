@@ -14,3 +14,10 @@ In particular, I'm surprised that Android Studio allows a project using Gradle 3
 Android Gradle plugin with version 2.3.1. I thought new releases of Android Studio required new
 versions of the Android Gradle plugin? The backwards-compatibility story is much better than I
 remembered.
+
+### Notes
+
+Use the command line to start the app in the attached device or emulator with:
+```
+adb shell am start -n "us.mn.dgtc.tada/us.mn.dgtc.tada.activity.HomeActivity"
+```

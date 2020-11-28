@@ -25,7 +25,7 @@ android {
     defaultConfig {
         applicationId "us.mn.dgtc.tada"
         minSdkVersion 25
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "us.mn.dgtc.tada.CustomRunner"

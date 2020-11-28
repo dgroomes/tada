@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version='1.2.50'
+    ext.kotlin_version='1.2.71'
     repositories {
         mavenLocal()
         jcenter()
@@ -35,10 +35,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-kapt {
-    generateStubs = true
 }
 
 dependencies {

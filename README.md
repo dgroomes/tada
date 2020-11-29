@@ -37,7 +37,7 @@ General clean ups, TODOs and things I wish to implement for this project:
   an indeterminate amount of time as I get vague and complex build errrors (e.g 50+ line Gradle
   stacktraces, or internal errors in AAPT, or Dagger code generation problems especially with regard
   to Kotlin... I've been down this road before and I don't want to revisit it if I can help it!)
-* Use Gradle's JVM toolchain support to use latest Java (15 right now) for the Gradle process but
+* DONE Use Gradle's JVM toolchain support to use latest Java (15 right now) for the Gradle process but
   use Java 8 for the project itself (I doubt this would work)
 * DONE Use Gradle's Kotlin DSL (UPDATE: implementing this was not a wise choice. Android does not explicitly support
   this. If they did support it, then they would have documentation about it. They do not have documentation. It's up to

@@ -15,6 +15,20 @@ val androidXTestEspressoVersion = "3.3.0" // releases: https://developer.android
 val androidXTestRulesVersion = "1.3.0" // releases: https://developer.android.com/jetpack/androidx/releases/test
 val androidXTestJunitVersion = "1.1.2" // releases: https://developer.android.com/jetpack/androidx/releases/test
 
+
+java {
+    /**
+     * Gradle's "Java toolchains" feature (https://docs.gradle.org/current/userguide/toolchains.html) let's us specify
+     * an exact version of Java to target for the project. Android (in)famously supports only as high as Java 8. So, we
+     * will specify Java 8. Gradle is free to execute on a newer version of Java. I have Java 15 on my computer right
+     * now so I would prefer Gradle to use Java 15. In practice, this reduces the number of Gradle daemons that might
+     * be running at the same time when multiple projects are being worked on that target different versions of Java.
+     */
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 android {
     compileSdkVersion(28)
     buildToolsVersion("29.0.2")

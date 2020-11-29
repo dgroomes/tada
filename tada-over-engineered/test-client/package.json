@@ -1,0 +1,23 @@
+{
+  "name": "test-client",
+  "version": "1.0.0",
+  "description": "A test client for an over-engineered version of the 'tada' application",
+  "main": "src/index.js",
+  "devDependencies": {
+    "electron": "^11.0.2"
+  },
+  "dependencies": {
+    "google-protobuf": "^3.14.0",
+    "@grpc/grpc-js": "^1.2.1"
+  },
+  "scripts": {
+    "start": "electron src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgroomes/tada.git"
+  },
+  "author": "David Groomes",
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/dgroomes/tada"
+}

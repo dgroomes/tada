@@ -39,7 +39,13 @@ General clean ups, TODOs and things I wish to implement for this project:
   to Kotlin... I've been down this road before and I don't want to revisit it if I can help it!)
 * Use Gradle's JVM toolchain support to use latest Java (15 right now) for the Gradle process but
   use Java 8 for the project itself (I doubt this would work)
-* Use Gradle's Kotlin DSL
+* DONE Use Gradle's Kotlin DSL (UPDATE: implementing this was not a wise choice. Android does not explicitly support
+  this. If they did support it, then they would have documentation about it. They do not have documentation. It's up to
+  you to read blog posts about how to do this. What's more, is that Goodl does not publish the correct plugin metadata
+  for the Android Gradle plugin. This makes it harder to figure out how to use. See the extensive notes in the very
+  thorough official Gradle documentation (thank you Gradle for good docs and many examples) https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:multi_project_builds_applying_plugins
+  Furhtermore, "kapt" is not resolving for me in Android Studio, and it keeps suggesting some import (which is wrong).
+  Gradle's Kotlin DSL *is not* recommended for Android projects.
 * DONE Upgrade to latest versions of test dependencies (yikes, there are a lot of independent testing
   components, each with their own versioning:
     * `com.android.support.test:runner` (currently version 0.5)

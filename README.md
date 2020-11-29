@@ -47,6 +47,7 @@ General clean ups, TODOs and things I wish to implement for this project:
     * `com.android.support.test.uiautomator:uiautomator-v18` (currently version 2.1.2, that's close though...)
 * DONE Remove Anko because it's deprecated and unsupported
 * DONE Upgrade to Android X
+* DONE Upgrade to latest Android X
 
 
 ## Reference Material

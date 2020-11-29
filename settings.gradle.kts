@@ -1,1 +1,2 @@
-include(":tada", ":tada-over-engineered")
+include(":tada")
+includeBuild("tada-over-engineered")

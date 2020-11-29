@@ -3,3 +3,4 @@ build/
 .gradle/
 tada.iml
 local.properties
+node_modules/

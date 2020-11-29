@@ -4,14 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import org.jetbrains.anko.onItemSelectedListener
 import us.mn.dgtc.tada.R
 
-/**
- * Created by David Groomes on 1/25/2016.
- */
 class HomeActivity : Activity() {
 
     val artOptions = ArtOptions("Random")
@@ -24,12 +22,18 @@ class HomeActivity : Activity() {
         val spinner = findViewById(R.id.paint_options) as Spinner
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, paintOptions)
         spinner.adapter = adapter
-        spinner.onItemSelectedListener {
-            onItemSelected { parent, _, position, _ ->
+
+        val listener = object : OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val item = parent?.getItemAtPosition(position) as String
                 artOptions.paint = item
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // do nothing
+            }
         }
+        spinner.setOnItemSelectedListener(listener)
     }
 
     @Suppress("UNUSED_PARAMETER")

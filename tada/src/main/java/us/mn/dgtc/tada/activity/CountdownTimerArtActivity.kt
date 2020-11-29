@@ -5,7 +5,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.ViewGroup
-import org.jetbrains.anko.onClick
 import us.mn.dgtc.tada.R
 import us.mn.dgtc.tada.TadaApplication
 
@@ -24,7 +23,7 @@ class CountDownTimerArtActivity : Activity() {
                         .graph
                         .countDownTimerElementManagerFactory()
                         .create(this)
-        view.onClick {
+        view.setOnClickListener {
             countDownTimerElementManager.addACountDownTimerElement()
         }
     }

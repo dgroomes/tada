@@ -3,33 +3,33 @@
  */
 
 let grpc = require('@grpc/grpc-js');
-let {Message} = require('./echo_pb');
-let {EchoClient} = require('./echo_grpc_pb');
+let {ClientRequest, Instruction} = require('./user-interface_pb');
+let {UserInterfaceDriverClient} = require('./user-interface_grpc_pb');
 let {contextBridge} = require('electron');
 
 let address = 'localhost:9090';
 let credentials = grpc.credentials.createInsecure();
-let echoClient = new EchoClient(address, credentials);
+let client = new UserInterfaceDriverClient(address, credentials);
 let callback = null;
 
 /**
  * Send a request to the gRPC server and pass the response to the renderer process via the registered callback.
  */
-function sendGrpcRequest(messageString) {
-    let message = new Message();
-    message.setMessage(messageString);
+function sendGrpcRequest(clientId) {
+    let message = new ClientRequest();
+    message.setClientid(clientId);
 
-    console.log(`*Sending* the following message to the server:\n${message.getMessage()}\n`);
-    echoClient.echo(message, function (err, message) {
+    console.log(`*Sending* a request to the gRPC for the next UI instruction`);
+    client.nextInstruction(message, function (err, instruction) {
         if (err) {
-            console.error(`The gRPC 'echo' method invocation failed.`, err);
+            console.error(`The gRPC 'nextInstruction' method invocation failed.`, err);
             return;
         }
 
         let callbackExists = callback != null;
         if (callbackExists) {
             console.log(`*Received* a response from the gRPC server. Passing it to the renderer process.`);
-            callback(message.getMessage());
+            callback(instruction.getTextcontent());
         } else {
             console.log("No callback is registered. So this message is going into a black hole.")
         }
@@ -59,11 +59,9 @@ function registerCallbackForMessages(fn) {
  * Set up a continually running simulation of gRPC messages.
  * TODO this is just temporary. It should be replaced with a real implementation.
  */
-let idx = 1;
 setInterval(() => {
     console.log(`Simulating a message.`);
-    let simulatedMessage = `Simulated message ${idx++}`;
-    sendGrpcRequest(simulatedMessage)
+    sendGrpcRequest(1)
 }, 3000);
 
 contextBridge.exposeInMainWorld("messagePassing", {

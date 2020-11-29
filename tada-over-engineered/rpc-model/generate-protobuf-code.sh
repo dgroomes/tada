@@ -15,7 +15,7 @@ dst_dir_java=src/main/java
 protoc \
   "--java_out=$dst_dir_java" \
   "--java-grpc_out=$dst_dir_java" \
-  echo.proto
+  user-interface.proto
 
 # Generate the JavaScript code
 dst_dir_javascript=../test-client/src
@@ -23,4 +23,4 @@ protoc \
   --plugin=protoc-gen-grpc=$(which grpc_node_plugin) \
   "--js_out=import_style=commonjs,binary:$dst_dir_javascript" \
   "--grpc_out=grpc_js:$dst_dir_javascript" \
-  echo.proto
+  user-interface.proto

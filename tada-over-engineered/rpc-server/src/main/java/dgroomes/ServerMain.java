@@ -1,5 +1,8 @@
 package dgroomes;
 
+import dgroomes.userinterface.UserInterfaceDriverGrpc.UserInterfaceDriverImplBase;
+import dgroomes.userinterface.UserInterfaceProtos.ClientRequest;
+import dgroomes.userinterface.UserInterfaceProtos.Instruction;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
@@ -8,7 +11,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
- * A simple Java program that runs a gRPC server.
+ * A simple Java program that runs a gRPC server that sends User Interface (UI) instructions.
+ *
+ * NOT YET FULLY IMPLEMENTED
  */
 public class ServerMain {
 
@@ -21,7 +26,7 @@ public class ServerMain {
      */
     public static void main(String[] args) throws IOException, InterruptedException {
         var server = ServerBuilder.forPort(9090)
-                .addService(new EchoImpl())
+                .addService(new DriverImpl())
                 .build()
                 .start();
         log.info("Listening for requests...");
@@ -41,17 +46,15 @@ public class ServerMain {
         server.awaitTermination();
     }
 
-    static class EchoImpl extends EchoGrpc.EchoImplBase {
+    static class DriverImpl extends UserInterfaceDriverImplBase {
 
         @Override
-        public void echo(EchoProtos.Message req, StreamObserver<EchoProtos.Message> responseObserver) {
-            var receivedMsg = req.getMessage();
-            var responseMsg = EchoProtos.Message.newBuilder().setMessage("""
-                    %s...
-                    %s...
-                    %s...
-                    """.formatted(receivedMsg, receivedMsg, receivedMsg)).build();
-            responseObserver.onNext(responseMsg);
+        public void nextInstruction(ClientRequest req, StreamObserver<Instruction> responseObserver) {
+            var clientId = req.getClientId();
+            var instruction = Instruction.newBuilder()
+                    .setTextContent("[clientId=%d] not yet implemented".formatted(clientId))
+                    .build();
+            responseObserver.onNext(instruction);
             responseObserver.onCompleted();
         }
     }

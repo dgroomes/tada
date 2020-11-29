@@ -62,16 +62,16 @@ The system is made of these components:
     * Move into the `rpc-model/` sub-project: `cd rpc-model`
     * Generate the source code with: `./generate-protobuf-code.sh`
     * This will have created the files:
-      * `src/main/java/dgroomes/EchoProtos.java`
-      * `src/main/java/dgroomes/EchoGrpc.java`
-      * `../test-client/src/echo_pb.js`
-      * `../test-client/src/echo_grpc_pb.js`
+      * `src/main/java/dgroomes/userinterface/UserInterfaceProtos.java`
+      * `src/main/java/dgroomes/userinterface/UserInterfaceDriverGrpc.java`
+      * `../test-client/src/user-interface_pb.js`
+      * `../test-client/src/user-interface_grpc_pb.js`
     * I am choosing to check these files into version control. Alternatively, in your own project, you could gitignore
       the generated code and just build them on-demand as part of your development workflow. That would be the more
       "engineered" approach.
     * Return to the root of the sub-project: `cd ..` 
 1. Build the project with `./gradlew installDist` 
-1. Run the echo_server with `rpc-server/build/install/rpc-server/bin/rpc-server`. You should see output like this:
+1. Run the gRPC server with `rpc-server/build/install/rpc-server/bin/rpc-server`. You should see output like this:
    ```
    Nov 23, 2020 10:05:32 PM dgroomes.ServerMain main
    INFO: Listening for requests...
@@ -80,3 +80,9 @@ The system is made of these components:
     * `cd test-client`
     * `npm install`
     * `npm start`
+
+## Wish List
+
+General clean ups, TODOs and things I wish to implement for this project:
+
+* IN PROGRESS Implement actual "UI instructions" from the gRPC server to the test-client. E.g. "create a text box"

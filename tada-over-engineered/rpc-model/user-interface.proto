@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+/*
+ * Options specific to Java code generation:
+ */
+option java_package = "dgroomes.userinterface";
+option java_outer_classname = "UserInterfaceProtos";
+
+/**
+ * A naive implementation of a data model that represent user interface (UI) instructions. We are starting with simple
+ * "text boxes".
+ */
+message Instruction {
+  string textContent = 1;
+}
+
+/**
+ * This is mostly unused. We just are not allowed to define rpc methods without parameters.
+ */
+message ClientRequest {
+  int32 clientId = 1;
+}
+
+/**
+ * A service that drives a UI. (Remember, this whole project is abstract nonsense).
+ */
+service UserInterfaceDriver {
+
+  /**
+   * Calling this method returns the "next UI instruction"
+   */
+  rpc NextInstruction(ClientRequest) returns (Instruction) {}
+}

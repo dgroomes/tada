@@ -40,7 +40,7 @@ General clean ups, TODOs and things I wish to implement for this project:
 * Use Gradle's JVM toolchain support to use latest Java (15 right now) for the Gradle process but
   use Java 8 for the project itself (I doubt this would work)
 * Use Gradle's Kotlin DSL
-* Upgrade to latest versions of test dependencies (yikes, there are a lot of independent testing
+* DONE Upgrade to latest versions of test dependencies (yikes, there are a lot of independent testing
   components, each with their own versioning:
     * `com.android.support.test:runner` (currently version 0.5)
     * `com.android.support.test.espresso:espresso-core` (currently version 2.2.2)

@@ -1,14 +1,14 @@
 buildscript {
-    ext.kotlinVersion = '1.4.20' // releases: Kotlin doesn't supply a browseable releases page.
-    ext.daggerVersion = '2.30.1' // releases: https://github.com/google/dagger/releases
+    ext.kotlinVersion = "1.4.20" // releases: Kotlin doesn't supply a browseable releases page.
+    ext.daggerVersion = "2.30.1" // releases: https://github.com/google/dagger/releases
 
-    ext.androidXAppCompatVersion = '1.2.0' //releases: https://developer.android.com/jetpack/androidx/releases/appcompat
-    ext.androidXAnnotationVersion = '1.1.0' // releases: https://developer.android.com/jetpack/androidx/releases/annotation
-    ext.androidXConstraintLayoutVersion = '2.0.4' // releases: https://developer.android.com/jetpack/androidx/releases/constraintlayout
+    ext.androidXAppCompatVersion = "1.2.0" //releases: https://developer.android.com/jetpack/androidx/releases/appcompat
+    ext.androidXAnnotationVersion = "1.1.0" // releases: https://developer.android.com/jetpack/androidx/releases/annotation
+    ext.androidXConstraintLayoutVersion = "2.0.4" // releases: https://developer.android.com/jetpack/androidx/releases/constraintlayout
 
-    ext.androidXTestEspressoVersion = '3.3.0' // releases: https://developer.android.com/jetpack/androidx/releases/test
-    ext.androidXTestRulesVersion = '1.3.0' // releases: https://developer.android.com/jetpack/androidx/releases/test
-    ext.androidXTestJunitVersion = '1.1.2' // releases: https://developer.android.com/jetpack/androidx/releases/test
+    ext.androidXTestEspressoVersion = "3.3.0" // releases: https://developer.android.com/jetpack/androidx/releases/test
+    ext.androidXTestRulesVersion = "1.3.0" // releases: https://developer.android.com/jetpack/androidx/releases/test
+    ext.androidXTestJunitVersion = "1.1.2" // releases: https://developer.android.com/jetpack/androidx/releases/test
 
     repositories {
         mavenLocal()
@@ -20,13 +20,13 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '29.0.2'
+    buildToolsVersion "29.0.2"
 
     lintOptions {
         abortOnError false
@@ -44,30 +44,28 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
 }
 
 dependencies {
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
 
-    implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
-    testImplementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
-    testImplementation 'org.mockito:mockito-all:1.10.19'
-    testImplementation 'com.squareup.assertj:assertj-android:1.1.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    testImplementation 'junit:junit:4.12'
-    implementation "androidx.constraintlayout:constraintlayout:$androidXConstraintLayoutVersion"
+    implementation("com.google.dagger:dagger:$daggerVersion")
+    implementation("com.google.dagger:dagger-android-support:$daggerVersion")
+    kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
-    androidTestImplementation ("androidx.test.ext:junit:$androidXTestJunitVersion")
-    // Set this dependency to use JUnit 4 rules
-    androidTestImplementation "androidx.test:rules:$androidXTestRulesVersion"
-    // Set this dependency to build and run Espresso tests
-    androidTestImplementation ("androidx.test.espresso:espresso-core:$androidXTestEspressoVersion")
-    androidTestImplementation "androidx.annotation:annotation:$androidXAnnotationVersion"
-    // Set this dependency to build and run UI Automator tests
-    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0' // is this deprecated? I don't see it in https://developer.android.com/jetpack/androidx/releases/test
+    implementation("androidx.appcompat:appcompat:$androidXAppCompatVersion")
+    implementation("androidx.constraintlayout:constraintlayout:$androidXConstraintLayoutVersion")
+
+    testImplementation("com.squareup.assertj:assertj-android:1.1.1")
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.mockito:mockito-all:1.10.19")
+
+    androidTestImplementation("androidx.test.ext:junit:$androidXTestJunitVersion")
+    androidTestImplementation("androidx.test:rules:$androidXTestRulesVersion")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$androidXTestEspressoVersion")
+    androidTestImplementation("androidx.annotation:annotation:$androidXAnnotationVersion")
+//    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0") // is this deprecated? I don't see it in https://developer.android.com/jetpack/androidx/releases/test
 }

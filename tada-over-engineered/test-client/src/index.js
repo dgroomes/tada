@@ -10,11 +10,11 @@ const path = require('path')
  * Register a listener to create the browser window when Electron is "ready"
  */
 app.whenReady().then(() => {
-    let detectVersionsScript = path.join(__dirname, 'detect-versions.js');
+    let messagePassingScript = path.join(__dirname, 'message-passing.js');
 
     let options = {
         webPreferences: {
-            preload: detectVersionsScript,
+            preload: messagePassingScript,
             contextIsolation: true
         }
     };

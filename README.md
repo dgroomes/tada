@@ -26,7 +26,7 @@ adb shell am start -n "us.mn.dgtc.tada/us.mn.dgtc.tada.activity.HomeActivity"
 
 General clean ups, TODOs and things I wish to implement for this project:
 
-* Upgrade to latest version of Dagger
+* DONE Upgrade to latest version of Dagger
 * DONE Upgrade to latest version of the Android Gradle plugin
 * DONE Upgrade to latest version of Gradle
 * DONE Upgrade to latest version of Kotlin. (There's an overarching theme of "upgrade everything"! The

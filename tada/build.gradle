@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlinVersion = '1.4.20' // releases: Kotlin doesn't supply a browseable releases page.
-    ext.daggerVersion = '2.25.4' // releases: https://github.com/google/dagger/releases
+    ext.daggerVersion = '2.30.1' // releases: https://github.com/google/dagger/releases
 
     ext.androidXAppCompatVersion = '1.2.0' //releases: https://developer.android.com/jetpack/androidx/releases/appcompat
     ext.androidXAnnotationVersion = '1.1.0' // releases: https://developer.android.com/jetpack/androidx/releases/annotation
@@ -50,11 +50,9 @@ android {
 }
 
 dependencies {
-    //Dagger 2 dependencies
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    compileOnly 'org.glassfish:javax.annotation:10.0-b28' // why is this needed?
 
     implementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"
     testImplementation "androidx.appcompat:appcompat:$androidXAppCompatVersion"

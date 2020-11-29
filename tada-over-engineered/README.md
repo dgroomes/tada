@@ -44,10 +44,28 @@ The system is made of these components:
       mv ~/Downloads/protoc-gen-grpc-java-1.33.1-osx-x86_64.exe /usr/local/bin/protoc-gen-java-grpc
       chmod +x /usr/local/bin/protoc-gen-java-grpc
       ```
-1. Generate the Java source code from the Protobuf files
+1. Install the official `protoc` compiler plugin that supports Node.js/JavaScript code generation
+    * Warning: this is complicated! Unfortunately, the plugin artifact is not distributed so we must build it from source
+    * What are `protoc` compiler plugins? Read the official documentation page ["Other Languages"](https://developers.google.com/protocol-buffers/docs/reference/other)  
+    * Clone the `grpc-node` source code:
+       * `git clone https://github.com/grpc/grpc-node.git`
+       * `cd grpc-node/`
+       * `git submodule sync --recursive`
+       * `git -c protocol.version=2 submodule update --init --force --depth=1 --recursive` (what's a more succinct command to pull Git submodules?)
+       * Install "cmake" with `brew install cmake`
+       * `cd packages/grpc-tools/`
+       * Finally, build it with `./build_binaries.sh`
+       * The binary should be at the following path underneath the project root: `packages/grpc-tools/build/bin/grpc_node_plugin`
+       * Symlink the binary to somewhere on your PATH. For example, this is the command I used on my computer:
+          * `ln -s ~/repos/opensource/grpc-node/packages/grpc-tools/build/bin/grpc_node_plugin /usr/local/bin/`       
+1. Generate the Java and JavaScript source code from the Protobuf files
     * Move into the `rpc-model/` sub-project: `cd rpc-model`
-    * Generate the Java source with: `./generate-protobuf-code.sh`
-    * This will have created the files `src/main/java/dgroomes/EchoProtos.java` and `src/main/java/dgroomes/EchoGrpc.java`
+    * Generate the source code with: `./generate-protobuf-code.sh`
+    * This will have created the files:
+      * `src/main/java/dgroomes/EchoProtos.java`
+      * `src/main/java/dgroomes/EchoGrpc.java`
+      * `../test-client/src/echo_pb.js`
+      * `../test-client/src/echo_grpc_pb.js`
     * I am choosing to check these files into version control. Alternatively, in your own project, you could gitignore
       the generated code and just build them on-demand as part of your development workflow. That would be the more
       "engineered" approach.

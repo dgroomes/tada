@@ -1,10 +1,40 @@
 /**
- * Wiring up message passing between the main process and a renderer process.
+ * Creating a gRPC client and wiring up message passing between the main process and a renderer process.
  */
 
-const {contextBridge} = require('electron');
+let grpc = require('@grpc/grpc-js');
+let {Message} = require('./echo_pb');
+let {EchoClient} = require('./echo_grpc_pb');
+let {contextBridge} = require('electron');
 
+let address = 'localhost:9090';
+let credentials = grpc.credentials.createInsecure();
+let echoClient = new EchoClient(address, credentials);
 let callback = null;
+
+/**
+ * Send a request to the gRPC server and pass the response to the renderer process via the registered callback.
+ */
+function sendGrpcRequest(messageString) {
+    let message = new Message();
+    message.setMessage(messageString);
+
+    console.log(`*Sending* the following message to the server:\n${message.getMessage()}\n`);
+    echoClient.echo(message, function (err, message) {
+        if (err) {
+            console.error(`The gRPC 'echo' method invocation failed.`, err);
+            return;
+        }
+
+        let callbackExists = callback != null;
+        if (callbackExists) {
+            console.log(`*Received* a response from the gRPC server. Passing it to the renderer process.`);
+            callback(message.getMessage());
+        } else {
+            console.log("No callback is registered. So this message is going into a black hole.")
+        }
+    });
+}
 
 /*
  * Define a function that can be used by a renderer process to register a callback.
@@ -26,21 +56,15 @@ function registerCallbackForMessages(fn) {
 }
 
 /**
- * Set up a continually running simulation of messages from the main process to a renderer process via the callback.
+ * Set up a continually running simulation of gRPC messages.
+ * TODO this is just temporary. It should be replaced with a real implementation.
  */
 let idx = 1;
 setInterval(() => {
-    let callbackExists = callback != null;
-    console.log(`Simulating a message. callBackExists=${callbackExists}`);
-
+    console.log(`Simulating a message.`);
     let simulatedMessage = `Simulated message ${idx++}`;
-    if (callbackExists) {
-        callback(simulatedMessage);
-    } else {
-        console.log("No callback is registered. So this message is going into a black hole.")
-    }
-
-}, 1000);
+    sendGrpcRequest(simulatedMessage)
+}, 3000);
 
 contextBridge.exposeInMainWorld("messagePassing", {
     registerCallbackForMessages: registerCallbackForMessages

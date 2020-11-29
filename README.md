@@ -46,6 +46,7 @@ General clean ups, TODOs and things I wish to implement for this project:
     * `com.android.support.test.espresso:espresso-core` (currently version 2.2.2)
     * `com.android.support.test.uiautomator:uiautomator-v18` (currently version 2.1.2, that's close though...)
 * DONE Remove Anko because it's deprecated and unsupported
+* Upgrade to Android X
 
 
 ## Reference Material

@@ -85,4 +85,5 @@ The system is made of these components:
 
 General clean ups, TODOs and things I wish to implement for this project:
 
-* IN PROGRESS Implement actual "UI instructions" from the gRPC server to the test-client. E.g. "create a text box"
+* DONE Implement actual "UI instructions" from the gRPC server to the test-client. E.g. "update a text box"
+* Create a countdown clock via UI instructions

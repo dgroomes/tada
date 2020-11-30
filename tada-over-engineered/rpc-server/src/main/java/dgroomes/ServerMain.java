@@ -7,12 +7,17 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
+import static java.time.temporal.ChronoField.*;
+
 /**
  * A simple Java program that runs a gRPC server that sends User Interface (UI) instructions.
- *
+ * <p>
  * NOT YET FULLY IMPLEMENTED
  */
 public class ServerMain {
@@ -48,11 +53,23 @@ public class ServerMain {
 
     static class DriverImpl extends UserInterfaceDriverImplBase {
 
+        int idx = 1;
+
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendValue(HOUR_OF_DAY, 2)
+                .appendLiteral(':')
+                .appendValue(MINUTE_OF_HOUR, 2)
+                .optionalStart()
+                .appendLiteral(':')
+                .appendValue(SECOND_OF_MINUTE, 2)
+                .toFormatter();
+
         @Override
         public void nextInstruction(ClientRequest req, StreamObserver<Instruction> responseObserver) {
-            var clientId = req.getClientId();
+            String now = formatter.format(LocalDateTime.now());
+
             var instruction = Instruction.newBuilder()
-                    .setTextContent("[clientId=%d] not yet implemented".formatted(clientId))
+                    .setTextContent("[%s] hello %d".formatted(now, idx++))
                     .build();
             responseObserver.onNext(instruction);
             responseObserver.onCompleted();

@@ -31,11 +31,11 @@ function deserialize_Instruction(buffer_arg) {
 // A service that drives a UI. (Remember, this whole project is abstract nonsense).
 var UserInterfaceDriverService = exports.UserInterfaceDriverService = {
   // *
-// Calling this method returns the "next UI instruction"
-nextInstruction: {
-    path: '/UserInterfaceDriver/NextInstruction',
+// The next evolution of "NextInstruction". This is a *stream* of instructions.
+nextInstructions: {
+    path: '/UserInterfaceDriver/NextInstructions',
     requestStream: false,
-    responseStream: false,
+    responseStream: true,
     requestType: user$interface_pb.ClientRequest,
     responseType: user$interface_pb.Instruction,
     requestSerialize: serialize_ClientRequest,

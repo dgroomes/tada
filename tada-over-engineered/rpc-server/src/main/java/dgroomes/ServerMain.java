@@ -23,6 +23,8 @@ import static java.time.temporal.ChronoField.*;
 public class ServerMain {
 
     private static final Logger log = Logger.getLogger(ServerMain.class.getName());
+    public static final int NUMBER_OF_INSTRUCTIONS = 100;
+    public static final int INSTRUCTION_DELAY = 1000;
 
     /**
      * 1) Start a gRPC server
@@ -65,13 +67,24 @@ public class ServerMain {
                 .toFormatter();
 
         @Override
-        public void nextInstruction(ClientRequest req, StreamObserver<Instruction> responseObserver) {
-            String now = formatter.format(LocalDateTime.now());
+        public void nextInstructions(ClientRequest request, StreamObserver<Instruction> responseObserver) {
+            int idx = 1;
 
-            var instruction = Instruction.newBuilder()
-                    .setTextContent("[%s] hello %d".formatted(now, idx++))
-                    .build();
-            responseObserver.onNext(instruction);
+            while (idx <= NUMBER_OF_INSTRUCTIONS) {
+                try {
+                    Thread.sleep(INSTRUCTION_DELAY);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                var now = formatter.format(LocalDateTime.now());
+
+                var instruction = Instruction.newBuilder()
+                        .setTextContent("[%s] hello %d".formatted(now, idx++))
+                        .build();
+                responseObserver.onNext(instruction);
+
+            }
             responseObserver.onCompleted();
         }
     }

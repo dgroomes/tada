@@ -13,26 +13,41 @@ let client = new UserInterfaceDriverClient(address, credentials);
 let callback = null;
 
 /**
- * Send a request to the gRPC server and pass the response to the renderer process via the registered callback.
+ * Send a request to the gRPC server to receive an indefinite stream of "UI instruction" responses. Pass each UI
+ * instruction  to the renderer process via the registered callback.
  */
-function sendGrpcRequest(clientId) {
+function streamInstructionsFromGrpcServer(clientId) {
     let message = new ClientRequest();
     message.setClientid(clientId);
 
-    console.log(`*Sending* a request to the gRPC for the next UI instruction`);
-    client.nextInstruction(message, function (err, instruction) {
-        if (err) {
-            console.error(`The gRPC 'nextInstruction' method invocation failed.`, err);
-            return;
-        }
+    console.log(`Sending a request to the gRPC server to get a streaming response of next UI instructions`);
 
+    let call = client.nextInstructions(message, function (err) {
+        if (err) {
+            console.error(`The gRPC 'nextInstructions' method invocation failed.`, err);
+        }
+    });
+
+    call.on('data', function(instruction) {
         let callbackExists = callback != null;
         if (callbackExists) {
-            console.log(`*Received* a response from the gRPC server. Passing it to the renderer process.`);
+            console.log(`Received a response from the gRPC server. Passing it to the renderer process.`);
             callback(instruction.getTextcontent());
         } else {
-            console.log("No callback is registered. So this message is going into a black hole.")
+            console.log("No callback is registered. So this message is going into a black hole.");
         }
+    });
+    call.on('end', function() {
+        console.log('The gRPC server has finished sending responses');
+    });
+    call.on('error', function(e) {
+        console.error('An error has occurred and the gRPC stream has ended');
+        console.error(e);
+    });
+
+    // I dont' know what 'status' means but let's log it to find out.
+    call.on('status', function(status) {
+        console.log(`gRPC 'nextInstructions' stream 'status' event occurred: ${status}`);
     });
 }
 
@@ -56,13 +71,9 @@ function registerCallbackForMessages(fn) {
 }
 
 /**
- * Set up a continually running simulation of gRPC messages.
- * TODO this is just temporary. It should be replaced with a real implementation.
+ * Start an indefinite stream of UI instructions from the gRPC server
  */
-setInterval(() => {
-    console.log(`Simulating a message.`);
-    sendGrpcRequest(1)
-}, 3000);
+streamInstructionsFromGrpcServer(1);
 
 contextBridge.exposeInMainWorld("messagePassing", {
     registerCallbackForMessages: registerCallbackForMessages

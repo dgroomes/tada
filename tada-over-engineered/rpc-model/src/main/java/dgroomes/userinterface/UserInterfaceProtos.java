@@ -1113,10 +1113,10 @@ public final class UserInterfaceProtos {
     java.lang.String[] descriptorData = {
       "\n\024user-interface.proto\"\"\n\013Instruction\022\023\n" +
       "\013textContent\030\001 \001(\t\"!\n\rClientRequest\022\020\n\010c" +
-      "lientId\030\001 \001(\0052H\n\023UserInterfaceDriver\0221\n\017" +
-      "NextInstruction\022\016.ClientRequest\032\014.Instru" +
-      "ction\"\000B-\n\026dgroomes.userinterfaceB\023UserI" +
-      "nterfaceProtosb\006proto3"
+      "lientId\030\001 \001(\0052K\n\023UserInterfaceDriver\0224\n\020" +
+      "NextInstructions\022\016.ClientRequest\032\014.Instr" +
+      "uction\"\0000\001B-\n\026dgroomes.userinterfaceB\023Us" +
+      "erInterfaceProtosb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

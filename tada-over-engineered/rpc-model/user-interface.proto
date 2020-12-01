@@ -27,7 +27,7 @@ message ClientRequest {
 service UserInterfaceDriver {
 
   /**
-   * Calling this method returns the "next UI instruction"
+   * The next evolution of "NextInstruction". This is a *stream* of instructions.
    */
-  rpc NextInstruction(ClientRequest) returns (Instruction) {}
+  rpc NextInstructions(ClientRequest) returns (stream Instruction) {}
 }

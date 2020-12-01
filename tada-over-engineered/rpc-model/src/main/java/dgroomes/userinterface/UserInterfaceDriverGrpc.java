@@ -32,34 +32,34 @@ public final class UserInterfaceDriverGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<dgroomes.userinterface.UserInterfaceProtos.ClientRequest,
-      dgroomes.userinterface.UserInterfaceProtos.Instruction> getNextInstructionMethod;
+      dgroomes.userinterface.UserInterfaceProtos.Instruction> getNextInstructionsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "NextInstruction",
+      fullMethodName = SERVICE_NAME + '/' + "NextInstructions",
       requestType = dgroomes.userinterface.UserInterfaceProtos.ClientRequest.class,
       responseType = dgroomes.userinterface.UserInterfaceProtos.Instruction.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<dgroomes.userinterface.UserInterfaceProtos.ClientRequest,
-      dgroomes.userinterface.UserInterfaceProtos.Instruction> getNextInstructionMethod() {
-    io.grpc.MethodDescriptor<dgroomes.userinterface.UserInterfaceProtos.ClientRequest, dgroomes.userinterface.UserInterfaceProtos.Instruction> getNextInstructionMethod;
-    if ((getNextInstructionMethod = UserInterfaceDriverGrpc.getNextInstructionMethod) == null) {
+      dgroomes.userinterface.UserInterfaceProtos.Instruction> getNextInstructionsMethod() {
+    io.grpc.MethodDescriptor<dgroomes.userinterface.UserInterfaceProtos.ClientRequest, dgroomes.userinterface.UserInterfaceProtos.Instruction> getNextInstructionsMethod;
+    if ((getNextInstructionsMethod = UserInterfaceDriverGrpc.getNextInstructionsMethod) == null) {
       synchronized (UserInterfaceDriverGrpc.class) {
-        if ((getNextInstructionMethod = UserInterfaceDriverGrpc.getNextInstructionMethod) == null) {
-          UserInterfaceDriverGrpc.getNextInstructionMethod = getNextInstructionMethod =
+        if ((getNextInstructionsMethod = UserInterfaceDriverGrpc.getNextInstructionsMethod) == null) {
+          UserInterfaceDriverGrpc.getNextInstructionsMethod = getNextInstructionsMethod =
               io.grpc.MethodDescriptor.<dgroomes.userinterface.UserInterfaceProtos.ClientRequest, dgroomes.userinterface.UserInterfaceProtos.Instruction>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "NextInstruction"))
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "NextInstructions"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   dgroomes.userinterface.UserInterfaceProtos.ClientRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   dgroomes.userinterface.UserInterfaceProtos.Instruction.getDefaultInstance()))
-              .setSchemaDescriptor(new UserInterfaceDriverMethodDescriptorSupplier("NextInstruction"))
+              .setSchemaDescriptor(new UserInterfaceDriverMethodDescriptorSupplier("NextInstructions"))
               .build();
         }
       }
     }
-    return getNextInstructionMethod;
+    return getNextInstructionsMethod;
   }
 
   /**
@@ -117,23 +117,23 @@ public final class UserInterfaceDriverGrpc {
     /**
      * <pre>
      **
-     * Calling this method returns the "next UI instruction"
+     * The next evolution of "NextInstruction". This is a *stream* of instructions.
      * </pre>
      */
-    public void nextInstruction(dgroomes.userinterface.UserInterfaceProtos.ClientRequest request,
+    public void nextInstructions(dgroomes.userinterface.UserInterfaceProtos.ClientRequest request,
         io.grpc.stub.StreamObserver<dgroomes.userinterface.UserInterfaceProtos.Instruction> responseObserver) {
-      asyncUnimplementedUnaryCall(getNextInstructionMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getNextInstructionsMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getNextInstructionMethod(),
-            asyncUnaryCall(
+            getNextInstructionsMethod(),
+            asyncServerStreamingCall(
               new MethodHandlers<
                 dgroomes.userinterface.UserInterfaceProtos.ClientRequest,
                 dgroomes.userinterface.UserInterfaceProtos.Instruction>(
-                  this, METHODID_NEXT_INSTRUCTION)))
+                  this, METHODID_NEXT_INSTRUCTIONS)))
           .build();
     }
   }
@@ -159,13 +159,13 @@ public final class UserInterfaceDriverGrpc {
     /**
      * <pre>
      **
-     * Calling this method returns the "next UI instruction"
+     * The next evolution of "NextInstruction". This is a *stream* of instructions.
      * </pre>
      */
-    public void nextInstruction(dgroomes.userinterface.UserInterfaceProtos.ClientRequest request,
+    public void nextInstructions(dgroomes.userinterface.UserInterfaceProtos.ClientRequest request,
         io.grpc.stub.StreamObserver<dgroomes.userinterface.UserInterfaceProtos.Instruction> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getNextInstructionMethod(), getCallOptions()), request, responseObserver);
+      asyncServerStreamingCall(
+          getChannel().newCall(getNextInstructionsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -190,12 +190,13 @@ public final class UserInterfaceDriverGrpc {
     /**
      * <pre>
      **
-     * Calling this method returns the "next UI instruction"
+     * The next evolution of "NextInstruction". This is a *stream* of instructions.
      * </pre>
      */
-    public dgroomes.userinterface.UserInterfaceProtos.Instruction nextInstruction(dgroomes.userinterface.UserInterfaceProtos.ClientRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getNextInstructionMethod(), getCallOptions(), request);
+    public java.util.Iterator<dgroomes.userinterface.UserInterfaceProtos.Instruction> nextInstructions(
+        dgroomes.userinterface.UserInterfaceProtos.ClientRequest request) {
+      return blockingServerStreamingCall(
+          getChannel(), getNextInstructionsMethod(), getCallOptions(), request);
     }
   }
 
@@ -216,21 +217,9 @@ public final class UserInterfaceDriverGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new UserInterfaceDriverFutureStub(channel, callOptions);
     }
-
-    /**
-     * <pre>
-     **
-     * Calling this method returns the "next UI instruction"
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<dgroomes.userinterface.UserInterfaceProtos.Instruction> nextInstruction(
-        dgroomes.userinterface.UserInterfaceProtos.ClientRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getNextInstructionMethod(), getCallOptions()), request);
-    }
   }
 
-  private static final int METHODID_NEXT_INSTRUCTION = 0;
+  private static final int METHODID_NEXT_INSTRUCTIONS = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -249,8 +238,8 @@ public final class UserInterfaceDriverGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_NEXT_INSTRUCTION:
-          serviceImpl.nextInstruction((dgroomes.userinterface.UserInterfaceProtos.ClientRequest) request,
+        case METHODID_NEXT_INSTRUCTIONS:
+          serviceImpl.nextInstructions((dgroomes.userinterface.UserInterfaceProtos.ClientRequest) request,
               (io.grpc.stub.StreamObserver<dgroomes.userinterface.UserInterfaceProtos.Instruction>) responseObserver);
           break;
         default:
@@ -314,7 +303,7 @@ public final class UserInterfaceDriverGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new UserInterfaceDriverFileDescriptorSupplier())
-              .addMethod(getNextInstructionMethod())
+              .addMethod(getNextInstructionsMethod())
               .build();
         }
       }

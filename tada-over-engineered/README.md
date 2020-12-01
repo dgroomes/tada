@@ -86,4 +86,11 @@ The system is made of these components:
 General clean ups, TODOs and things I wish to implement for this project:
 
 * DONE Implement actual "UI instructions" from the gRPC server to the test-client. E.g. "update a text box"
+* DONE Stream the UI instructions from the gRPC server
 * Create a countdown clock via UI instructions
+
+
+## Materials Referenced
+
+* [Protobuf official site: Language Guide for "proto3"](https://developers.google.com/protocol-buffers/docs/proto3)
+* [gRPC official site: core concepts](https://grpc.io/docs/what-is-grpc/core-concepts)

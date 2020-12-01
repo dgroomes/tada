@@ -12,6 +12,13 @@ option java_outer_classname = "UserInterfaceProtos";
  */
 message Instruction {
   string textContent = 1;
+  int32 elementId = 2;
+  enum Type {
+    CREATE = 0;
+    UPDATE = 1;
+    DELETE = 2;
+  }
+  Type type = 3;
 }
 
 /**

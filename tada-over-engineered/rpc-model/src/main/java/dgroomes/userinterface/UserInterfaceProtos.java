@@ -29,6 +29,23 @@ public final class UserInterfaceProtos {
      */
     com.google.protobuf.ByteString
         getTextContentBytes();
+
+    /**
+     * <code>int32 elementId = 2;</code>
+     * @return The elementId.
+     */
+    int getElementId();
+
+    /**
+     * <code>.Instruction.Type type = 3;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    int getTypeValue();
+    /**
+     * <code>.Instruction.Type type = 3;</code>
+     * @return The type.
+     */
+    dgroomes.userinterface.UserInterfaceProtos.Instruction.Type getType();
   }
   /**
    * <pre>
@@ -50,6 +67,7 @@ public final class UserInterfaceProtos {
     }
     private Instruction() {
       textContent_ = "";
+      type_ = 0;
     }
 
     @java.lang.Override
@@ -88,6 +106,17 @@ public final class UserInterfaceProtos {
               textContent_ = s;
               break;
             }
+            case 16: {
+
+              elementId_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -118,6 +147,123 @@ public final class UserInterfaceProtos {
       return dgroomes.userinterface.UserInterfaceProtos.internal_static_Instruction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               dgroomes.userinterface.UserInterfaceProtos.Instruction.class, dgroomes.userinterface.UserInterfaceProtos.Instruction.Builder.class);
+    }
+
+    /**
+     * Protobuf enum {@code Instruction.Type}
+     */
+    public enum Type
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>CREATE = 0;</code>
+       */
+      CREATE(0),
+      /**
+       * <code>UPDATE = 1;</code>
+       */
+      UPDATE(1),
+      /**
+       * <code>DELETE = 2;</code>
+       */
+      DELETE(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>CREATE = 0;</code>
+       */
+      public static final int CREATE_VALUE = 0;
+      /**
+       * <code>UPDATE = 1;</code>
+       */
+      public static final int UPDATE_VALUE = 1;
+      /**
+       * <code>DELETE = 2;</code>
+       */
+      public static final int DELETE_VALUE = 2;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Type valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static Type forNumber(int value) {
+        switch (value) {
+          case 0: return CREATE;
+          case 1: return UPDATE;
+          case 2: return DELETE;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Type> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return dgroomes.userinterface.UserInterfaceProtos.Instruction.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Type[] VALUES = values();
+
+      public static Type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Type(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:Instruction.Type)
     }
 
     public static final int TEXTCONTENT_FIELD_NUMBER = 1;
@@ -158,6 +304,36 @@ public final class UserInterfaceProtos {
       }
     }
 
+    public static final int ELEMENTID_FIELD_NUMBER = 2;
+    private int elementId_;
+    /**
+     * <code>int32 elementId = 2;</code>
+     * @return The elementId.
+     */
+    @java.lang.Override
+    public int getElementId() {
+      return elementId_;
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private int type_;
+    /**
+     * <code>.Instruction.Type type = 3;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    @java.lang.Override public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.Instruction.Type type = 3;</code>
+     * @return The type.
+     */
+    @java.lang.Override public dgroomes.userinterface.UserInterfaceProtos.Instruction.Type getType() {
+      @SuppressWarnings("deprecation")
+      dgroomes.userinterface.UserInterfaceProtos.Instruction.Type result = dgroomes.userinterface.UserInterfaceProtos.Instruction.Type.valueOf(type_);
+      return result == null ? dgroomes.userinterface.UserInterfaceProtos.Instruction.Type.UNRECOGNIZED : result;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -175,6 +351,12 @@ public final class UserInterfaceProtos {
       if (!getTextContentBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, textContent_);
       }
+      if (elementId_ != 0) {
+        output.writeInt32(2, elementId_);
+      }
+      if (type_ != dgroomes.userinterface.UserInterfaceProtos.Instruction.Type.CREATE.getNumber()) {
+        output.writeEnum(3, type_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -186,6 +368,14 @@ public final class UserInterfaceProtos {
       size = 0;
       if (!getTextContentBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, textContent_);
+      }
+      if (elementId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, elementId_);
+      }
+      if (type_ != dgroomes.userinterface.UserInterfaceProtos.Instruction.Type.CREATE.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, type_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -204,6 +394,9 @@ public final class UserInterfaceProtos {
 
       if (!getTextContent()
           .equals(other.getTextContent())) return false;
+      if (getElementId()
+          != other.getElementId()) return false;
+      if (type_ != other.type_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -217,6 +410,10 @@ public final class UserInterfaceProtos {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TEXTCONTENT_FIELD_NUMBER;
       hash = (53 * hash) + getTextContent().hashCode();
+      hash = (37 * hash) + ELEMENTID_FIELD_NUMBER;
+      hash = (53 * hash) + getElementId();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -358,6 +555,10 @@ public final class UserInterfaceProtos {
         super.clear();
         textContent_ = "";
 
+        elementId_ = 0;
+
+        type_ = 0;
+
         return this;
       }
 
@@ -385,6 +586,8 @@ public final class UserInterfaceProtos {
       public dgroomes.userinterface.UserInterfaceProtos.Instruction buildPartial() {
         dgroomes.userinterface.UserInterfaceProtos.Instruction result = new dgroomes.userinterface.UserInterfaceProtos.Instruction(this);
         result.textContent_ = textContent_;
+        result.elementId_ = elementId_;
+        result.type_ = type_;
         onBuilt();
         return result;
       }
@@ -436,6 +639,12 @@ public final class UserInterfaceProtos {
         if (!other.getTextContent().isEmpty()) {
           textContent_ = other.textContent_;
           onChanged();
+        }
+        if (other.getElementId() != 0) {
+          setElementId(other.getElementId());
+        }
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -538,6 +747,91 @@ public final class UserInterfaceProtos {
   checkByteStringIsUtf8(value);
         
         textContent_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int elementId_ ;
+      /**
+       * <code>int32 elementId = 2;</code>
+       * @return The elementId.
+       */
+      @java.lang.Override
+      public int getElementId() {
+        return elementId_;
+      }
+      /**
+       * <code>int32 elementId = 2;</code>
+       * @param value The elementId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setElementId(int value) {
+        
+        elementId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 elementId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearElementId() {
+        
+        elementId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int type_ = 0;
+      /**
+       * <code>.Instruction.Type type = 3;</code>
+       * @return The enum numeric value on the wire for type.
+       */
+      @java.lang.Override public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.Instruction.Type type = 3;</code>
+       * @param value The enum numeric value on the wire for type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeValue(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Instruction.Type type = 3;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public dgroomes.userinterface.UserInterfaceProtos.Instruction.Type getType() {
+        @SuppressWarnings("deprecation")
+        dgroomes.userinterface.UserInterfaceProtos.Instruction.Type result = dgroomes.userinterface.UserInterfaceProtos.Instruction.Type.valueOf(type_);
+        return result == null ? dgroomes.userinterface.UserInterfaceProtos.Instruction.Type.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.Instruction.Type type = 3;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(dgroomes.userinterface.UserInterfaceProtos.Instruction.Type value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.Instruction.Type type = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
         onChanged();
         return this;
       }
@@ -1111,12 +1405,15 @@ public final class UserInterfaceProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\024user-interface.proto\"\"\n\013Instruction\022\023\n" +
-      "\013textContent\030\001 \001(\t\"!\n\rClientRequest\022\020\n\010c" +
-      "lientId\030\001 \001(\0052K\n\023UserInterfaceDriver\0224\n\020" +
-      "NextInstructions\022\016.ClientRequest\032\014.Instr" +
-      "uction\"\0000\001B-\n\026dgroomes.userinterfaceB\023Us" +
-      "erInterfaceProtosb\006proto3"
+      "\n\024user-interface.proto\"\202\001\n\013Instruction\022\023" +
+      "\n\013textContent\030\001 \001(\t\022\021\n\telementId\030\002 \001(\005\022\037" +
+      "\n\004type\030\003 \001(\0162\021.Instruction.Type\"*\n\004Type\022" +
+      "\n\n\006CREATE\020\000\022\n\n\006UPDATE\020\001\022\n\n\006DELETE\020\002\"!\n\rC" +
+      "lientRequest\022\020\n\010clientId\030\001 \001(\0052K\n\023UserIn" +
+      "terfaceDriver\0224\n\020NextInstructions\022\016.Clie" +
+      "ntRequest\032\014.Instruction\"\0000\001B-\n\026dgroomes." +
+      "userinterfaceB\023UserInterfaceProtosb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1127,7 +1424,7 @@ public final class UserInterfaceProtos {
     internal_static_Instruction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Instruction_descriptor,
-        new java.lang.String[] { "TextContent", });
+        new java.lang.String[] { "TextContent", "ElementId", "Type", });
     internal_static_ClientRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_ClientRequest_fieldAccessorTable = new

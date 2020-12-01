@@ -32,7 +32,16 @@ function streamInstructionsFromGrpcServer(clientId) {
         let callbackExists = callback != null;
         if (callbackExists) {
             console.log(`Received a response from the gRPC server. Passing it to the renderer process.`);
-            callback(instruction.getTextcontent());
+            console.log(`getTextcontent: ${instruction.getTextcontent()}`);
+            console.log(`getElementid: ${instruction.getElementid()}`);
+
+            // Hmmm, Electron strips out the Prototype chain for the type of 'instruction' when we pass it across the
+            // wall... I think? So to work around this, I'll just get the contents and put the into a simple object
+            callback({
+                textContent: instruction.getTextcontent(),
+                elementId: instruction.getElementid(),
+                type: instruction.getType()
+            });
         } else {
             console.log("No callback is registered. So this message is going into a black hole.");
         }

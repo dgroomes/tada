@@ -7,13 +7,8 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
-
-import static java.time.temporal.ChronoField.*;
 
 /**
  * A simple Java program that runs a gRPC server that sends User Interface (UI) instructions.
@@ -23,7 +18,7 @@ import static java.time.temporal.ChronoField.*;
 public class ServerMain {
 
     private static final Logger log = Logger.getLogger(ServerMain.class.getName());
-    public static final int NUMBER_OF_INSTRUCTIONS = 100;
+    public static final int NUMBER_OF_INSTRUCTIONS = 10;
     public static final int INSTRUCTION_DELAY = 1000;
 
     /**
@@ -55,20 +50,29 @@ public class ServerMain {
 
     static class DriverImpl extends UserInterfaceDriverImplBase {
 
-        int idx = 1;
-
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
-                .appendValue(HOUR_OF_DAY, 2)
-                .appendLiteral(':')
-                .appendValue(MINUTE_OF_HOUR, 2)
-                .optionalStart()
-                .appendLiteral(':')
-                .appendValue(SECOND_OF_MINUTE, 2)
-                .toFormatter();
-
         @Override
         public void nextInstructions(ClientRequest request, StreamObserver<Instruction> responseObserver) {
             int idx = 1;
+
+            {
+                int id = 1;
+                var instruction = Instruction.newBuilder()
+                        .setTextContent("[%d] %d".formatted(id, idx))
+                        .setElementId(id)
+                        .setType(Instruction.Type.CREATE)
+                        .build();
+                responseObserver.onNext(instruction);
+            }
+
+            {
+                int id = 2;
+                var instruction = Instruction.newBuilder()
+                        .setTextContent("[%d] %d".formatted(id, idx))
+                        .setElementId(id)
+                        .setType(Instruction.Type.CREATE)
+                        .build();
+                responseObserver.onNext(instruction);
+            }
 
             while (idx <= NUMBER_OF_INSTRUCTIONS) {
                 try {
@@ -77,14 +81,53 @@ public class ServerMain {
                     e.printStackTrace();
                 }
 
-                var now = formatter.format(LocalDateTime.now());
+                idx++;
 
+                {
+                    int id = 1;
+                    var instruction = Instruction.newBuilder()
+                            .setTextContent("[%d] %d".formatted(id, idx))
+                            .setElementId(id)
+                            .setType(Instruction.Type.UPDATE)
+                            .build();
+                    responseObserver.onNext(instruction);
+                }
+
+                {
+                    int id = 2;
+                    var instruction = Instruction.newBuilder()
+                            .setTextContent("[%d] %d".formatted(id, idx))
+                            .setElementId(id)
+                            .setType(Instruction.Type.UPDATE)
+                            .build();
+                    responseObserver.onNext(instruction);
+                }
+            }
+
+            try {
+                Thread.sleep(INSTRUCTION_DELAY);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            {
+                int id = 1;
                 var instruction = Instruction.newBuilder()
-                        .setTextContent("[%s] hello %d".formatted(now, idx++))
+                        .setElementId(id)
+                        .setType(Instruction.Type.DELETE)
                         .build();
                 responseObserver.onNext(instruction);
-
             }
+
+            {
+                int id = 2;
+                var instruction = Instruction.newBuilder()
+                        .setElementId(id)
+                        .setType(Instruction.Type.DELETE)
+                        .build();
+                responseObserver.onNext(instruction);
+            }
+
             responseObserver.onCompleted();
         }
     }

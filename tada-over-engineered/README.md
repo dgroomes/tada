@@ -88,7 +88,7 @@ General clean ups, TODOs and things I wish to implement for this project:
 * DONE Implement actual "UI instructions" from the gRPC server to the test-client. E.g. "update a text box"
 * DONE Stream the UI instructions from the gRPC server
 * DONE Update and delete UI elements via instructions
-* Create an element via instructions
+* DONE Create an element via instructions
 * Create a countdown clock via UI instructions
 * Can a single streaming rpc send different message types? If not, then can message types be extended with sub-types?
 * Does gRPC support high numbers of concurrent connections? If so, then I should model each UI element with it's own
@@ -96,7 +96,9 @@ General clean ups, TODOs and things I wish to implement for this project:
 * Extract the UI instructions logic into its own module. It should be abstracted and de-coupled from gRPC. It should be
   written so that's easy to write unit tests for and so that the unit tests execute quickly. Coupling the UI instruction
   logic with gRPC would require starting a gRPC server and client just to test it, which would be slow.
-
+* Better error handling. Global exception handler? But where to put it? I know there is the renderer process and the
+  main process but do errors propagate up from the renderer to the main process, or in some in-between place? I'm seeing
+  "VM errors" for errors that originate in the browser... I don't get it.
 
 ## Materials Referenced
 

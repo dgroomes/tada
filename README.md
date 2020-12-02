@@ -44,7 +44,7 @@ General clean ups, TODOs and things I wish to implement for this project:
   you to read blog posts about how to do this. What's more, is that Goodl does not publish the correct plugin metadata
   for the Android Gradle plugin. This makes it harder to figure out how to use. See the extensive notes in the very
   thorough official Gradle documentation (thank you Gradle for good docs and many examples) https://docs.gradle.org/current/userguide/kotlin_dsl.html#sec:multi_project_builds_applying_plugins
-  Furhtermore, "kapt" is not resolving for me in Android Studio, and it keeps suggesting some import (which is wrong).
+  Furthermore, "kapt" is not resolving for me in Android Studio, and it keeps suggesting some import (which is wrong).
   Gradle's Kotlin DSL *is not* recommended for Android projects.
 * DONE Upgrade to latest versions of test dependencies (yikes, there are a lot of independent testing
   components, each with their own versioning:

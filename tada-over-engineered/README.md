@@ -89,6 +89,7 @@ General clean ups, TODOs and things I wish to implement for this project:
 * DONE Stream the UI instructions from the gRPC server
 * DONE Update and delete UI elements via instructions
 * DONE Create an element via instructions
+* On click, create an element
 * Create a countdown clock via UI instructions
 * Can a single streaming rpc send different message types? If not, then can message types be extended with sub-types?
 * Does gRPC support high numbers of concurrent connections? If so, then I should model each UI element with it's own

@@ -4,7 +4,7 @@
   "description": "A test client for an over-engineered version of the 'tada' application",
   "main": "src/index.js",
   "devDependencies": {
-    "electron": "^11.2.3"
+    "electron": "^15.5.5"
   },
   "dependencies": {
     "google-protobuf": "^3.14.0",
